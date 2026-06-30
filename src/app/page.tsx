@@ -294,23 +294,8 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Middle connecting area for headphones/hobbies (desktop layout element helper) */}
-              <div className="hidden lg:flex justify-end lg:pr-1 lg:mr-[-22px] lg:translate-y-4 items-center h-28">
-                <HeadphonesGadget
-                  id="headphones"
-                  isActive={visibleSections.hobbies}
-                  isHovered={hoveredGadget === "headphones"}
-                  onHoverStart={() => {
-                    setHoveredGadget("headphones");
-                    triggerHoverPulse("hobbies-to-headphones");
-                  }}
-                  onHoverEnd={() => {
-                    setHoveredGadget(null);
-                    clearHoverPulse("hobbies-to-headphones");
-                  }}
-                  anchorRef={anchors.headphones}
-                />
-              </div>
+              {/* Spacer placeholder to preserve layout height distribution */}
+              <div className="hidden lg:block h-28" />
 
               {/* 2. HOBBIES */}
               <motion.div
@@ -352,23 +337,8 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Middle connecting area for book/education (desktop layout element helper) */}
-              <div className="hidden lg:flex justify-end lg:pr-1 lg:mr-[-16px] items-center h-28">
-                <BookGadget
-                  id="book"
-                  isActive={visibleSections.education}
-                  isHovered={hoveredGadget === "book"}
-                  onHoverStart={() => {
-                    setHoveredGadget("book");
-                    triggerHoverPulse("book-to-education");
-                  }}
-                  onHoverEnd={() => {
-                    setHoveredGadget(null);
-                    clearHoverPulse("book-to-education");
-                  }}
-                  anchorRef={anchors.book}
-                />
-              </div>
+              {/* Spacer placeholder to preserve layout height distribution */}
+              <div className="hidden lg:block h-28" />
 
               {/* 3. EDUCATION & LANGUAGES */}
               <motion.div
@@ -569,10 +539,10 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Central Gadget Cluster */}
-              <div className="flex flex-col items-center justify-center space-y-4 lg:space-y-3 mt-2">
-                {/* Bag Gadget Container */}
-                <div className="flex flex-col items-center">
+              {/* Centralized Relative Gadget Hub */}
+              <div className="flex flex-col items-center space-y-4 lg:space-y-0 lg:block lg:relative lg:w-full lg:h-[320px] mt-2">
+                {/* Bag Gadget */}
+                <div className="lg:absolute lg:top-[0px] lg:left-[calc(50%-55px)]">
                   <BagGadget
                     id="bag"
                     isActive={visibleSections.experience}
@@ -589,8 +559,8 @@ export default function Home() {
                   />
                 </div>
 
-                {/* Monitor Gadget Container */}
-                <div className="flex flex-col items-center">
+                {/* Monitor Gadget */}
+                <div className="lg:absolute lg:top-[90px] lg:left-[calc(50%-65px)]">
                   <MonitorGadget
                     id="monitor"
                     isActive={visibleSections.projects}
@@ -607,8 +577,8 @@ export default function Home() {
                   />
                 </div>
 
-                {/* Keyboard Gadget Container */}
-                <div className="flex flex-col items-center">
+                {/* Keyboard Gadget */}
+                <div className="lg:absolute lg:top-[195px] lg:left-[calc(50%-65px)]">
                   <KeyboardGadget
                     id="keyboard"
                     isActive={visibleSections.research}
@@ -622,6 +592,78 @@ export default function Home() {
                       clearHoverPulse("keyboard-to-research");
                     }}
                     anchorRef={anchors.keyboard}
+                  />
+                </div>
+
+                {/* Headphones Gadget */}
+                <div className="hidden lg:block lg:absolute lg:top-[35px] lg:left-[-20px]">
+                  <HeadphonesGadget
+                    id="headphones"
+                    isActive={visibleSections.hobbies}
+                    isHovered={hoveredGadget === "headphones"}
+                    onHoverStart={() => {
+                      setHoveredGadget("headphones");
+                      triggerHoverPulse("hobbies-to-headphones");
+                    }}
+                    onHoverEnd={() => {
+                      setHoveredGadget(null);
+                      clearHoverPulse("hobbies-to-headphones");
+                    }}
+                    anchorRef={anchors.headphones}
+                  />
+                </div>
+
+                {/* Book Gadget */}
+                <div className="hidden lg:block lg:absolute lg:top-[160px] lg:left-[-20px]">
+                  <BookGadget
+                    id="book"
+                    isActive={visibleSections.education}
+                    isHovered={hoveredGadget === "book"}
+                    onHoverStart={() => {
+                      setHoveredGadget("book");
+                      triggerHoverPulse("book-to-education");
+                    }}
+                    onHoverEnd={() => {
+                      setHoveredGadget(null);
+                      clearHoverPulse("book-to-education");
+                    }}
+                    anchorRef={anchors.book}
+                  />
+                </div>
+
+                {/* Phone Gadget */}
+                <div className="hidden lg:block lg:absolute lg:top-[20px] lg:right-[-20px]">
+                  <PhoneGadget
+                    id="phone"
+                    isActive={visibleSections.contact}
+                    isHovered={hoveredGadget === "phone"}
+                    onHoverStart={() => {
+                      setHoveredGadget("phone");
+                      triggerHoverPulse("phone-to-contact");
+                    }}
+                    onHoverEnd={() => {
+                      setHoveredGadget(null);
+                      clearHoverPulse("phone-to-contact");
+                    }}
+                    anchorRef={anchors.phone}
+                  />
+                </div>
+
+                {/* Mouse Gadget */}
+                <div className="hidden lg:block lg:absolute lg:top-[180px] lg:right-[-52px]">
+                  <MouseGadget
+                    id="mouse"
+                    isActive={visibleSections.skills}
+                    isHovered={hoveredGadget === "mouse"}
+                    onHoverStart={() => {
+                      setHoveredGadget("mouse");
+                      triggerHoverPulse("mouse-to-skills");
+                    }}
+                    onHoverEnd={() => {
+                      setHoveredGadget(null);
+                      clearHoverPulse("mouse-to-skills");
+                    }}
+                    anchorRef={anchors.mouse}
                   />
                 </div>
               </div>
@@ -680,23 +722,8 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Middle connecting area for phone/contact (desktop layout element helper) */}
-              <div className="hidden lg:flex justify-start lg:pl-1 lg:ml-[-100px] lg:translate-y-50 items-center h-28">
-                <PhoneGadget
-                  id="phone"
-                  isActive={visibleSections.contact}
-                  isHovered={hoveredGadget === "phone"}
-                  onHoverStart={() => {
-                    setHoveredGadget("phone");
-                    triggerHoverPulse("phone-to-contact");
-                  }}
-                  onHoverEnd={() => {
-                    setHoveredGadget(null);
-                    clearHoverPulse("phone-to-contact");
-                  }}
-                  anchorRef={anchors.phone}
-                />
-              </div>
+              {/* Spacer placeholder to preserve layout height distribution */}
+              <div className="hidden lg:block h-28" />
 
               {/* 2. PROJECTS */}
               <motion.div
@@ -743,23 +770,8 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Middle connecting area for mouse/skills (desktop layout element helper) */}
-              <div className="hidden lg:flex justify-start lg:pl-1 lg:ml-[-16px] items-center h-28">
-                <MouseGadget
-                  id="mouse"
-                  isActive={visibleSections.skills}
-                  isHovered={hoveredGadget === "mouse"}
-                  onHoverStart={() => {
-                    setHoveredGadget("mouse");
-                    triggerHoverPulse("mouse-to-skills");
-                  }}
-                  onHoverEnd={() => {
-                    setHoveredGadget(null);
-                    clearHoverPulse("mouse-to-skills");
-                  }}
-                  anchorRef={anchors.mouse}
-                />
-              </div>
+              {/* Spacer placeholder to preserve layout height distribution */}
+              <div className="hidden lg:block h-28" />
 
               {/* 3. SOFTWARE SKILLS */}
               <motion.div

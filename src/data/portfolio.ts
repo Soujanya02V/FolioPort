@@ -39,10 +39,10 @@ export const portfolio: PortfolioData = {
     { icon: "Bike", label: "Biking" },
     { icon: "Clapperboard", label: "Movies" },
     { icon: "Dumbbell", label: "Sports" },
-    { icon: "Music", label: "Music" },
-    { icon: "Coffee", label: "Chilling at cafe" },
-    { icon: "Camera", label: "Photography" },
-    { icon: "BookOpen", label: "Reading" },
+    // { icon: "Music", label: "Music" },
+    // { icon: "Coffee", label: "Chilling at cafe" },
+    // { icon: "Camera", label: "Photography" },
+    // { icon: "BookOpen", label: "Reading" },
   ],
   education: [
     {
@@ -117,9 +117,9 @@ export const portfolio: PortfolioData = {
     { icon: "Phone", text: "094-6201999", href: "tel:0946201999" },
     { icon: "Mail", text: "soujanya.dev@gmail.com", href: "mailto:soujanya.dev@gmail.com" },
     { icon: "LinkedinIcon", text: "linkedin.com/in/soujanya", href: "https://linkedin.com/in/soujanya" },
-    { icon: "GithubIcon", text: "github.com/soujanya", href: "https://github.com/soujanya" },
-    { icon: "InstagramIcon", text: "soujanya.codes", href: "https://instagram.com/soujanya.codes" },
-    { icon: "MessageSquare", text: "soujanya_ln", href: null },
+    // { icon: "GithubIcon", text: "github.com/soujanya", href: "https://github.com/soujanya" },
+    // { icon: "InstagramIcon", text: "soujanya.codes", href: "https://instagram.com/soujanya.codes" },
+    // { icon: "MessageSquare", text: "soujanya_ln", href: null },
   ],
   research: [
     { icon: "FileText", title: "Research Papers", text: "Published ML paper" },
