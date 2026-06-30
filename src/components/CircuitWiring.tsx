@@ -87,8 +87,9 @@ export const CircuitWiring: React.FC<CircuitWiringProps> = ({ anchors, activePul
         const midX = start.x - 45;
         d = `M ${start.x} ${start.y} H ${midX} V ${end.y} H ${end.x}`;
       } else if (routing === "profile-tablet") {
-        // Profile to tablet split: goes right, down, then right
-        const midX = start.x + 55;
+        // Profile to tablet split: goes right, down, then right. Capped dynamically to midpoint.
+        const maxMidX = start.x + 55;
+        const midX = Math.min(maxMidX, start.x + (end.x - start.x) / 2);
         d = `M ${start.x} ${start.y} H ${midX} V ${end.y} H ${end.x}`;
       } else if (routing === "book-edu") {
         // Book to education: from Book bottom-left, goes left, down, left

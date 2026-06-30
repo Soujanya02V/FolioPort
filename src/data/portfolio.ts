@@ -8,14 +8,14 @@ export const portfolio: PortfolioData = {
     quote: "Building solutions, creating impact.",
   },
   experience: [
-    {
-      year: "2018",
-      text: "Volunteer of charity project in countryside village to improve the social living.",
-    },
-    {
-      year: "2017",
-      text: "รางวัล popular vote การประกวดออกแบบ Logo Lanna Coffee CMU.",
-    },
+    // {
+    //   year: "2018",
+    //   text: "Volunteer of charity project in countryside village to improve the social living.",
+    // },
+    // {
+    //   year: "2017",
+    //   text: "รางวัล popular vote การประกวดออกแบบ Logo Lanna Coffee CMU.",
+    // },
     {
       year: "2016",
       text: "ตัวแทนนำเสนอผลงานในโครงการประกวด Fashion Smart Start Up 2016",
