@@ -50,12 +50,17 @@ import {
   MouseGadget
 } from "@/components/Gadget";
 import { CircuitWiring } from "@/components/CircuitWiring";
+import IntroAnimation from "@/components/IntroAnimation";
 
 export default function Home() {
   // Navigation / Active highlights
   const [hoveredGadget, setHoveredGadget] = useState<string | null>(null);
   const [booting, setBooting] = useState<boolean>(true);
   const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
+
+  // Intro animation states
+  const [showIntro, setShowIntro] = useState<boolean>(false);
+  const [introFinished, setIntroFinished] = useState<boolean>(false);
 
   // Visibility states for sections (starts invisible for boot sequence)
   const [visibleSections, setVisibleSections] = useState<Record<string, boolean>>({
@@ -101,8 +106,29 @@ export default function Home() {
     research: useRef<HTMLDivElement>(null),
   };
 
-  // Coordinated Boot Sequence
+  // Check if first-time visitor on client mount
   useEffect(() => {
+    const introSeen = localStorage.getItem("portfolio-intro-seen");
+    if (!introSeen) {
+      setShowIntro(true);
+    } else {
+      setIntroFinished(true);
+    }
+  }, []);
+
+  const handleIntroComplete = () => {
+    localStorage.setItem("portfolio-intro-seen", "true");
+    setShowIntro(false);
+    setIntroFinished(true);
+  };
+
+  // Coordinated Boot Sequence (deferred until intro finishes)
+  const bootSequenceStarted = useRef(false);
+  useEffect(() => {
+    if (!introFinished) return;
+    if (bootSequenceStarted.current) return;
+    bootSequenceStarted.current = true;
+
     const runBootSequence = async () => {
       // 0. Initial silence: only gadgets, profile, and inactive wires visible.
       await delay(1200);
@@ -191,7 +217,7 @@ export default function Home() {
     };
 
     runBootSequence();
-  }, []);
+  }, [introFinished]);
 
   // Track cursor position for the tiny orange glow
   useEffect(() => {
@@ -232,7 +258,9 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0E0E10] text-white relative blueprint-grid py-12 md:py-20 select-none overflow-x-hidden">
+    <>
+      {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
+      <main className="min-h-screen bg-[#0E0E10] text-white relative blueprint-grid py-12 md:py-20 select-none overflow-x-hidden">
       {/* Tiny orange glow cursor follower */}
       <div
         className="fixed w-6 h-6 rounded-full bg-accent/25 pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2 blur-[2px] mix-blend-screen hidden md:block border border-accent/30 transition-transform duration-100 ease-out"
@@ -1031,5 +1059,6 @@ export default function Home() {
 
       </div>
     </main>
+    </>
   );
 }

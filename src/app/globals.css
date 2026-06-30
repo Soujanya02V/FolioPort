@@ -16,6 +16,7 @@
   --color-accent-rgb: var(--accent-rgb);
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
+  --font-bebas: var(--font-bebas-neue);
 }
 
 body {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Outfit } from "next/font/google";
+import { Space_Grotesk, Outfit, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -9,6 +9,12 @@ const spaceGrotesk = Space_Grotesk({
 
 const outfit = Outfit({
   variable: "--font-outfit",
+  subsets: ["latin"],
+});
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  variable: "--font-bebas-neue",
   subsets: ["latin"],
 });
 
@@ -23,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${outfit.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${outfit.variable} ${bebasNeue.variable}`}>
       <body className="antialiased selection:bg-accent selection:text-background relative min-h-screen">
         <div className="noise-overlay" />
         {children}
