@@ -299,7 +299,7 @@ export default function Home() {
             </motion.div>
 
             {/* Middle connecting area for headphones/hobbies (desktop layout element helper) */}
-            <div className="hidden lg:flex justify-end pr-10 items-center h-44">
+            <div className="hidden lg:flex justify-end lg:pr-1 lg:mr-[-16px] items-center h-28">
               <HeadphonesGadget
                 id="headphones"
                 isActive={visibleSections.hobbies}
@@ -359,7 +359,7 @@ export default function Home() {
             </motion.div>
 
             {/* Middle connecting area for book/education (desktop layout element helper) */}
-            <div className="hidden lg:flex justify-end pr-10 items-center h-44">
+            <div className="hidden lg:flex justify-end lg:pr-1 lg:mr-[-16px] items-center h-28">
               <BookGadget
                 id="book"
                 isActive={visibleSections.education}
@@ -577,58 +577,61 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Bag Gadget Container */}
-            <div className="flex flex-col items-center">
-              <BagGadget
-                id="bag"
-                isActive={visibleSections.experience}
-                isHovered={hoveredGadget === "bag"}
-                onHoverStart={() => {
-                  setHoveredGadget("bag");
-                  triggerHoverPulse("bag-to-experience");
-                }}
-                onHoverEnd={() => {
-                  setHoveredGadget(null);
-                  clearHoverPulse("bag-to-experience");
-                }}
-                anchorRef={anchors.bag}
-              />
-            </div>
+            {/* Central Gadget Cluster */}
+            <div className="flex flex-col items-center justify-center space-y-4 lg:space-y-3 mt-2">
+              {/* Bag Gadget Container */}
+              <div className="flex flex-col items-center">
+                <BagGadget
+                  id="bag"
+                  isActive={visibleSections.experience}
+                  isHovered={hoveredGadget === "bag"}
+                  onHoverStart={() => {
+                    setHoveredGadget("bag");
+                    triggerHoverPulse("bag-to-experience");
+                  }}
+                  onHoverEnd={() => {
+                    setHoveredGadget(null);
+                    clearHoverPulse("bag-to-experience");
+                  }}
+                  anchorRef={anchors.bag}
+                />
+              </div>
 
-            {/* Monitor Gadget Container */}
-            <div className="flex flex-col items-center my-6">
-              <MonitorGadget
-                id="monitor"
-                isActive={visibleSections.projects}
-                isHovered={hoveredGadget === "monitor"}
-                onHoverStart={() => {
-                  setHoveredGadget("monitor");
-                  triggerHoverPulse("monitor-to-projects");
-                }}
-                onHoverEnd={() => {
-                  setHoveredGadget(null);
-                  clearHoverPulse("monitor-to-projects");
-                }}
-                anchorRef={anchors.monitor}
-              />
-            </div>
+              {/* Monitor Gadget Container */}
+              <div className="flex flex-col items-center">
+                <MonitorGadget
+                  id="monitor"
+                  isActive={visibleSections.projects}
+                  isHovered={hoveredGadget === "monitor"}
+                  onHoverStart={() => {
+                    setHoveredGadget("monitor");
+                    triggerHoverPulse("monitor-to-projects");
+                  }}
+                  onHoverEnd={() => {
+                    setHoveredGadget(null);
+                    clearHoverPulse("monitor-to-projects");
+                  }}
+                  anchorRef={anchors.monitor}
+                />
+              </div>
 
-            {/* Keyboard Gadget Container */}
-            <div className="flex flex-col items-center">
-              <KeyboardGadget
-                id="keyboard"
-                isActive={visibleSections.research}
-                isHovered={hoveredGadget === "keyboard"}
-                onHoverStart={() => {
-                  setHoveredGadget("keyboard");
-                  triggerHoverPulse("keyboard-to-research");
-                }}
-                onHoverEnd={() => {
-                  setHoveredGadget(null);
-                  clearHoverPulse("keyboard-to-research");
-                }}
-                anchorRef={anchors.keyboard}
-              />
+              {/* Keyboard Gadget Container */}
+              <div className="flex flex-col items-center">
+                <KeyboardGadget
+                  id="keyboard"
+                  isActive={visibleSections.research}
+                  isHovered={hoveredGadget === "keyboard"}
+                  onHoverStart={() => {
+                    setHoveredGadget("keyboard");
+                    triggerHoverPulse("keyboard-to-research");
+                  }}
+                  onHoverEnd={() => {
+                    setHoveredGadget(null);
+                    clearHoverPulse("keyboard-to-research");
+                  }}
+                  anchorRef={anchors.keyboard}
+                />
+              </div>
             </div>
 
             {/* Bottom spacer for grid balance */}
@@ -688,7 +691,7 @@ export default function Home() {
             </motion.div>
 
             {/* Middle connecting area for phone/contact (desktop layout element helper) */}
-            <div className="hidden lg:flex justify-start pl-10 items-center h-44">
+            <div className="hidden lg:flex justify-start lg:pl-1 lg:ml-[-16px] items-center h-28">
               <PhoneGadget
                 id="phone"
                 isActive={visibleSections.contact}
@@ -752,7 +755,7 @@ export default function Home() {
             </motion.div>
 
             {/* Middle connecting area for mouse/skills (desktop layout element helper) */}
-            <div className="hidden lg:flex justify-start pl-10 items-center h-44">
+            <div className="hidden lg:flex justify-start lg:pl-1 lg:ml-[-16px] items-center h-28">
               <MouseGadget
                 id="mouse"
                 isActive={visibleSections.skills}
