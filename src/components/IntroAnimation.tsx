@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { portfolio } from "@/data/portfolio";
 
 interface IntroAnimationProps {
   onComplete: () => void;
@@ -506,7 +507,7 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
               className="font-bebas tracking-[0.1em]"
               fontSize="120"
             >
-              SOUJANYA
+              {portfolio.profile.name}
             </text>
           </g>
 

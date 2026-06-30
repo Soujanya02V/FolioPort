@@ -3,43 +3,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import {
-  MapPin,
-  Phone,
-  Mail,
   ExternalLink,
-  MessageSquare,
   GraduationCap,
-  BookOpen,
-  Plane,
-  Utensils,
-  Bike,
-  Clapperboard,
-  Dumbbell,
-  Music,
-  Coffee,
-  Camera,
-  FileText,
-  Cloud,
-  Layers,
-  Cpu,
-  Brain,
-  Workflow,
-  Terminal,
-  Grid
 } from "lucide-react";
 
-// Custom SVG components for brand icons to ensure compatibility
-const GithubIcon = ({ size = 16 }: { size?: number }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="lucide"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-);
-
-const LinkedinIcon = ({ size = 16 }: { size?: number }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="lucide"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-);
-
-const InstagramIcon = ({ size = 16 }: { size?: number }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="lucide"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-);
 import {
   BagGadget,
   HeadphonesGadget,
@@ -51,6 +18,10 @@ import {
 } from "@/components/Gadget";
 import { CircuitWiring } from "@/components/CircuitWiring";
 import IntroAnimation from "@/components/IntroAnimation";
+
+// Centralized portfolio data
+import { portfolio } from "@/data/portfolio";
+import { getIcon } from "@/utils/icons";
 
 export default function Home() {
   // Navigation / Active highlights
@@ -298,32 +269,7 @@ export default function Home() {
               </h2>
               
               <div className="relative border-l border-white/10 pl-6 ml-4 space-y-6">
-                {[
-                  {
-                    year: "2018",
-                    text: "Volunteer of charity project in countryside village to improve the social living.",
-                  },
-                  {
-                    year: "2017",
-                    text: "รางวัล popular vote การประกวดออกแบบ Logo Lanna Coffee CMU.",
-                  },
-                  {
-                    year: "2016",
-                    text: "ตัวแทนนำเสนอผลงานในโครงการประกวด Fashion Smart Start Up 2016",
-                  },
-                  {
-                    year: "2015",
-                    text: "Top 10 Creative Textile Award 2016",
-                  },
-                  {
-                    year: "2014",
-                    text: "งานแสดงผลงานด้านทัศนศิลป์และสถาปัตยกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่ ปีการศึกษา 2557-2559",
-                  },
-                  {
-                    year: "2013",
-                    text: "ประธานออกแบบเสื้อผ้า องค์การการปรับเปลี่ยนชุมชนใหม่ จัดกิจกรรมวันเด็กบนม่อนแจ่มพื้นที่ใกล้",
-                  },
-                ].map((item, idx) => (
+                {portfolio.experience.map((item, idx) => (
                   <div key={idx} className="relative group">
                     {/* Node Dot */}
                     <div
@@ -384,44 +330,31 @@ export default function Home() {
                 Hobbies
               </h2>
               <div className="grid grid-cols-2 gap-4">
-                {[
-                  { icon: Plane, label: "Travel" },
-                  { icon: Utensils, label: "Cooking" },
-                  { icon: Bike, label: "Biking" },
-                  { icon: Clapperboard, label: "Movies" },
-                  { icon: Dumbbell, label: "Sports" },
-                  { icon: Music, label: "Music" },
-                  { icon: Coffee, label: "Chilling at cafe" },
-                  { icon: Camera, label: "Photography" },
-                  { icon: BookOpen, label: "Reading" },
-                ].map((item, idx) => {
-                  const Icon = item.icon;
-                  return (
-                    <div
-                      key={idx}
-                      className="flex items-center space-x-3 group cursor-pointer py-1"
+                {portfolio.hobbies.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center space-x-3 group cursor-pointer py-1"
+                  >
+                    <motion.div
+                      animate={
+                        hoveredGadget === "headphones"
+                          ? { scale: [1, 1.15, 1], rotate: [0, 5, -5, 0] }
+                          : {}
+                      }
+                      transition={{ duration: 0.6, delay: idx * 0.05 }}
+                      className={`p-2 rounded border border-white/5 bg-white/5 transition-all duration-300 ${
+                        hoveredGadget === "headphones"
+                          ? "border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)]"
+                          : "group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5"
+                      }`}
                     >
-                      <motion.div
-                        animate={
-                          hoveredGadget === "headphones"
-                            ? { scale: [1, 1.15, 1], rotate: [0, 5, -5, 0] }
-                            : {}
-                        }
-                        transition={{ duration: 0.6, delay: idx * 0.05 }}
-                        className={`p-2 rounded border border-white/5 bg-white/5 transition-all duration-300 ${
-                          hoveredGadget === "headphones"
-                            ? "border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)]"
-                            : "group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5"
-                        }`}
-                      >
-                        <Icon size={16} />
-                      </motion.div>
-                      <span className="text-sm font-sans text-white/80 group-hover:text-white transition-colors duration-300">
-                        {item.label}
-                      </span>
-                    </div>
-                  );
-                })}
+                      {getIcon(item.icon, 16)}
+                    </motion.div>
+                    <span className="text-sm font-sans text-white/80 group-hover:text-white transition-colors duration-300">
+                      {item.label}
+                    </span>
+                  </div>
+                ))}
               </div>
             </motion.div>
 
@@ -463,23 +396,7 @@ export default function Home() {
                     </h2>
                   </div>
                   <div className="space-y-6 pl-2 border-l border-white/5">
-                    {[
-                      {
-                        year: "2013-2017",
-                        school: "RAJAMANGALA UNIVERSITY OF TECHNOLOGY LANNA",
-                        desc: "Faculty of Fine Arts and Architecture. ( GPA 3.73 )",
-                      },
-                      {
-                        year: "2010-2012",
-                        school: "SANSAIWITTAYAKOM SCHOOL",
-                        desc: "ม.ปลาย (ม.4-6) ( GPA 3.06 )",
-                      },
-                      {
-                        year: "2007-2009",
-                        school: "SANSAIWITTAYAKOM SCHOOL",
-                        desc: "ม.ต้น (ม.1-3) ( GPA 3.69 )",
-                      },
-                    ].map((item, idx) => (
+                    {portfolio.education.map((item, idx) => (
                       <div key={idx} className="group">
                         <div
                           className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold font-display mb-1.5 border transition-all duration-300 ${
@@ -507,39 +424,33 @@ export default function Home() {
                     Languages
                   </h2>
                   <div className="space-y-4">
-                    {/* Thai */}
-                    <div className="flex items-center space-x-3 group">
-                      <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10 flex items-center justify-center shrink-0">
-                        {/* Thai Flag SVG */}
-                        <svg viewBox="0 0 9 6" className="w-full h-full object-cover">
-                          <rect fill="#A51931" width="9" height="6" />
-                          <rect fill="#F4F5F8" y="1" width="9" height="4" />
-                          <rect fill="#2D2A4A" y="2" width="9" height="2" />
-                        </svg>
+                    {portfolio.languages.map((item, idx) => (
+                      <div key={idx} className="flex items-center space-x-3 group">
+                        <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10 flex items-center justify-center shrink-0">
+                          {item.code === "TH" ? (
+                            /* Thai Flag SVG */
+                            <svg viewBox="0 0 9 6" className="w-full h-full object-cover">
+                              <rect fill="#A51931" width="9" height="6" />
+                              <rect fill="#F4F5F8" y="1" width="9" height="4" />
+                              <rect fill="#2D2A4A" y="2" width="9" height="2" />
+                            </svg>
+                          ) : (
+                            /* UK Flag SVG */
+                            <svg viewBox="0 0 50 30" className="w-full h-full object-cover">
+                              <rect fill="#012169" width="50" height="30" />
+                              <path d="M0 0 L50 30 M50 0 L0 30" stroke="#FFF" strokeWidth="6" />
+                              <path d="M0 0 L50 30 M50 0 L0 30" stroke="#C8102E" strokeWidth="4" />
+                              <path d="M25 0 V30 M0 15 H50" stroke="#FFF" strokeWidth="10" />
+                              <path d="M25 0 V30 M0 15 H50" stroke="#C8102E" strokeWidth="6" />
+                            </svg>
+                          )}
+                        </div>
+                        <div>
+                          <span className="text-sm font-bold block text-white/85">{item.name}</span>
+                          <span className="text-[10px] text-white/50 group-hover:text-accent transition-colors duration-300">{item.level}</span>
+                        </div>
                       </div>
-                      <div>
-                        <span className="text-sm font-bold block text-white/85">Thai</span>
-                        <span className="text-[10px] text-white/50 group-hover:text-accent transition-colors duration-300">Native</span>
-                      </div>
-                    </div>
-
-                    {/* English */}
-                    <div className="flex items-center space-x-3 group">
-                      <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10 flex items-center justify-center shrink-0">
-                        {/* UK Flag SVG */}
-                        <svg viewBox="0 0 50 30" className="w-full h-full object-cover">
-                          <rect fill="#012169" width="50" height="30" />
-                          <path d="M0 0 L50 30 M50 0 L0 30" stroke="#FFF" strokeWidth="6" />
-                          <path d="M0 0 L50 30 M50 0 L0 30" stroke="#C8102E" strokeWidth="4" />
-                          <path d="M25 0 V30 M0 15 H50" stroke="#FFF" strokeWidth="10" />
-                          <path d="M25 0 V30 M0 15 H50" stroke="#C8102E" strokeWidth="6" />
-                        </svg>
-                      </div>
-                      <div>
-                        <span className="text-sm font-bold block text-white/85">English</span>
-                        <span className="text-[10px] text-white/50 group-hover:text-accent transition-colors duration-300">Professional</span>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -553,14 +464,15 @@ export default function Home() {
             {/* Header Identity */}
             <div className="flex flex-col items-center text-center">
               <h1 className="text-5xl font-black font-display tracking-[0.2em] text-white mb-2 select-text uppercase">
-                SOUJANYA
+                {portfolio.profile.name}
               </h1>
               <div className="flex items-center justify-center space-x-2 text-xs font-semibold font-display tracking-widest text-white/60 mb-8">
-                <span>SOFTWARE ENGINEER</span>
-                <span className="text-accent">|</span>
-                <span>AI RESEARCHER</span>
-                <span className="text-accent">|</span>
-                <span>FULL STACK DEVELOPER</span>
+                {portfolio.profile.titles.map((title, idx) => (
+                  <React.Fragment key={idx}>
+                    {idx > 0 && <span className="text-accent">|</span>}
+                    <span>{title}</span>
+                  </React.Fragment>
+                ))}
               </div>
 
               {/* Central Circular Profile Hub */}
@@ -650,7 +562,7 @@ export default function Home() {
                   {/* Floating status display */}
                   <div className="absolute -bottom-2 px-3 py-1 bg-[#0E0E10] border border-white/10 rounded-full text-[9px] font-mono tracking-widest text-accent uppercase flex items-center space-x-1.5 shadow-md">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
-                    <span>SYSTEM ONLINE</span>
+                    <span>{portfolio.profile.status}</span>
                   </div>
                 </div>
               </motion.div>
@@ -659,7 +571,7 @@ export default function Home() {
               <div className="max-w-xs mb-8 transition-opacity duration-700">
                 <div className="flex items-start justify-center space-x-1 text-white/80 italic text-sm font-sans font-medium">
                   <span className="text-accent text-lg font-bold font-display leading-none">“</span>
-                  <span className="leading-snug select-text">Building solutions, creating impact.</span>
+                  <span className="leading-snug select-text">{portfolio.profile.quote}</span>
                   <span className="text-accent text-lg font-bold font-display leading-none">”</span>
                 </div>
               </div>
@@ -741,16 +653,7 @@ export default function Home() {
                 Contact
               </h2>
               <div className="space-y-4">
-                {[
-                  { icon: MapPin, text: "108/1 หมู่ 7 ต.หนองหาร อ.สันทราย จ.เชียงใหม่ 50290", href: null },
-                  { icon: Phone, text: "094-6201999", href: "tel:0946201999" },
-                  { icon: Mail, text: "soujanya.dev@gmail.com", href: "mailto:soujanya.dev@gmail.com" },
-                  { icon: LinkedinIcon, text: "linkedin.com/in/soujanya", href: "https://linkedin.com/in/soujanya" },
-                  { icon: GithubIcon, text: "github.com/soujanya", href: "https://github.com/soujanya" },
-                  { icon: InstagramIcon, text: "soujanya.codes", href: "https://instagram.com/soujanya.codes" },
-                  { icon: MessageSquare, text: "soujanya_ln", href: null },
-                ].map((item, idx) => {
-                  const Icon = item.icon;
+                {portfolio.contact.map((item, idx) => {
                   const content = (
                     <div className="flex items-center space-x-3 group py-1 cursor-pointer">
                       <motion.div
@@ -766,7 +669,7 @@ export default function Home() {
                             : "group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5"
                         }`}
                       >
-                        <Icon size={16} />
+                        {getIcon(item.icon, 16)}
                       </motion.div>
                       <span className="text-sm font-sans text-white/80 group-hover:text-white transition-colors duration-300 select-text break-all leading-normal">
                         {item.text}
@@ -816,33 +719,7 @@ export default function Home() {
                 Projects
               </h2>
               <div className="space-y-4 pl-2 border-l border-white/5">
-                {[
-                  {
-                    title: "LitSync",
-                    desc: "AI-powered research assistant",
-                    link: "#",
-                  },
-                  {
-                    title: "LockedIn",
-                    desc: "Productivity & habit tracking app",
-                    link: "#",
-                  },
-                  {
-                    title: "AI Video Editor",
-                    desc: "Smart clip selection using AI",
-                    link: "#",
-                  },
-                  {
-                    title: "VoiceSheet",
-                    desc: "Voice assisted data filling",
-                    link: "#",
-                  },
-                  {
-                    title: "Food Delivery Web App",
-                    desc: "Full-stack MERN application",
-                    link: "#",
-                  },
-                ].map((project, idx) => (
+                {portfolio.projects.map((project, idx) => (
                   <div
                     key={idx}
                     className="group flex items-start justify-between p-2 rounded hover:bg-white/5 transition-all duration-300"
@@ -860,7 +737,7 @@ export default function Home() {
                     </div>
                     <div className="flex items-center space-x-2 shrink-0 pt-0.5 opacity-40 group-hover:opacity-100 transition-opacity duration-300">
                       <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
-                        <GithubIcon size={13} />
+                        {getIcon("GithubIcon", 13)}
                       </a>
                       <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
                         <ExternalLink size={13} />
@@ -909,11 +786,7 @@ export default function Home() {
               <div className="space-y-4">
                 {/* Designers circles */}
                 <div className="flex flex-wrap gap-3">
-                  {[
-                    { abbr: "Ai", full: "Adobe Illustrator" },
-                    { abbr: "Ps", full: "Adobe Photoshop" },
-                    { abbr: "Lr", full: "Adobe Lightroom" },
-                  ].map((skill, idx) => (
+                  {portfolio.skills.designers.map((skill, idx) => (
                     <div
                       key={idx}
                       className="group flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:border-accent/40 hover:bg-accent/5 transition-all duration-300"
@@ -935,19 +808,7 @@ export default function Home() {
                     <span className="text-[10px] font-bold font-mono text-accent">Code:</span>
                   </div>
                   <div className="flex flex-wrap gap-x-2 gap-y-1.5">
-                    {[
-                      "C++",
-                      "Java",
-                      "Python",
-                      "JavaScript",
-                      "SQL",
-                      "React",
-                      "Node.js",
-                      "MongoDB",
-                      "HTML",
-                      "CSS",
-                      "Tailwind",
-                    ].map((lang, idx) => (
+                    {portfolio.skills.developers.map((lang, idx) => (
                       <span
                         key={idx}
                         className="text-xs font-mono px-2 py-0.5 bg-[#0E0E10] rounded text-white/70 hover:text-accent transition-colors duration-300 border border-white/5 hover:border-accent/20 cursor-default"
@@ -980,79 +841,62 @@ export default function Home() {
 
             {/* Technical grid blueprint boxes */}
             <div className="border border-white/10 rounded overflow-hidden bg-white/5 grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/10 text-center">
-              
-              {[
-                { icon: FileText, title: "Research Papers", text: "Published ML paper" },
-                { icon: Cloud, title: "AWS Certified", text: "Cloud Architect Associate" },
-                { icon: Layers, title: "Docker", text: "Container orchestration" },
-                { icon: Cpu, title: "Terraform", text: "Infrastructure as Code" },
-              ].map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="p-6 flex flex-col items-center justify-center group hover:bg-[#0E0E10]/40 transition-colors duration-300"
+              {portfolio.research.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 flex flex-col items-center justify-center group hover:bg-[#0E0E10]/40 transition-colors duration-300"
+                >
+                  <motion.div
+                    animate={
+                      hoveredGadget === "keyboard"
+                        ? { scale: [1, 1.15, 1], y: [0, -2, 0] }
+                        : {}
+                    }
+                    transition={{ duration: 0.4, delay: idx * 0.08 }}
+                    className={`p-3 rounded border border-white/5 bg-white/5 mb-3 transition-all duration-300 ${
+                      hoveredGadget === "keyboard"
+                        ? "border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)]"
+                        : "group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5"
+                    }`}
                   >
-                    <motion.div
-                      animate={
-                        hoveredGadget === "keyboard"
-                          ? { scale: [1, 1.15, 1], y: [0, -2, 0] }
-                          : {}
-                      }
-                      transition={{ duration: 0.4, delay: idx * 0.08 }}
-                      className={`p-3 rounded border border-white/5 bg-white/5 mb-3 transition-all duration-300 ${
-                        hoveredGadget === "keyboard"
-                          ? "border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)]"
-                          : "group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5"
-                      }`}
-                    >
-                      <Icon size={20} strokeWidth={1.5} />
-                    </motion.div>
-                    <h4 className="text-xs font-bold uppercase tracking-widest mb-1 text-white/90 group-hover:text-white transition-colors duration-300">
-                      {item.title}
-                    </h4>
-                    <p className="text-[10px] text-white/50">{item.text}</p>
-                  </div>
-                );
-              })}
+                    {getIcon(item.icon, 20)}
+                  </motion.div>
+                  <h4 className="text-xs font-bold uppercase tracking-widest mb-1 text-white/90 group-hover:text-white transition-colors duration-300">
+                    {item.title}
+                  </h4>
+                  <p className="text-[10px] text-white/50">{item.text}</p>
+                </div>
+              ))}
             </div>
 
             {/* Bottom Row inside Grid: RAG, DevOps, LLM, System Design */}
             <div className="border-x border-b border-white/10 rounded-b bg-white/5 grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/10 text-center">
-              {[
-                { icon: Brain, title: "RAG", text: "Retrieval Augmented Gen" },
-                { icon: Workflow, title: "DevOps", text: "CI/CD & Pipelines" },
-                { icon: Terminal, title: "LLM", text: "Large Language Models" },
-                { icon: Grid, title: "System Design", text: "Scalable Architecture" },
-              ].map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="p-5 flex flex-col items-center justify-center group hover:bg-[#0E0E10]/40 transition-colors duration-300"
+              {portfolio.certifications.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="p-5 flex flex-col items-center justify-center group hover:bg-[#0E0E10]/40 transition-colors duration-300"
+                >
+                  <motion.div
+                    animate={
+                      hoveredGadget === "keyboard"
+                        ? { scale: [1, 1.15, 1] }
+                        : {}
+                    }
+                    transition={{ duration: 0.4, delay: (idx + 4) * 0.08 }}
+                    className={`p-2 rounded border border-white/5 bg-[#0E0E10] mb-2 transition-all duration-300 ${
+                      hoveredGadget === "keyboard"
+                        ? "border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)]"
+                        : "group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5"
+                    }`}
                   >
-                    <motion.div
-                      animate={
-                        hoveredGadget === "keyboard"
-                          ? { scale: [1, 1.15, 1] }
-                          : {}
-                      }
-                      transition={{ duration: 0.4, delay: (idx + 4) * 0.08 }}
-                      className={`p-2 rounded border border-white/5 bg-[#0E0E10] mb-2 transition-all duration-300 ${
-                        hoveredGadget === "keyboard"
-                          ? "border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)]"
-                          : "group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5"
-                      }`}
-                    >
-                      <Icon size={16} strokeWidth={1.5} />
-                    </motion.div>
-                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/80 group-hover:text-white transition-colors duration-300">
-                      {item.title}
-                    </h4>
-                    <p className="text-[9px] text-white/40">{item.text}</p>
-                  </div>
-                );
-              })}
+                    {getIcon(item.icon, 16)}
+                  </motion.div>
+                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/80 group-hover:text-white transition-colors duration-300">
+                    {item.title}
+                  </h4>
+                  <p className="text-[9px] text-white/40">{item.text}</p>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
