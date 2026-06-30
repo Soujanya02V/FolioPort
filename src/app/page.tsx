@@ -256,7 +256,7 @@ export default function Home() {
                 initial="hidden"
                 animate={visibleSections.experience ? "visible" : "hidden"}
                 variants={sectionVariants}
-                className={`transition-all duration-300 lg:translate-y-20 ${hoveredGadget === "bag" ? "scale-[1.01]" : ""
+                className={`transition-all duration-300 lg:translate-y-38 ${hoveredGadget === "bag" ? "scale-[1.01]" : ""
                   }`}
               >
                 <h2
@@ -303,7 +303,7 @@ export default function Home() {
                 initial="hidden"
                 animate={visibleSections.hobbies ? "visible" : "hidden"}
                 variants={sectionVariants}
-                className={`transition-all duration-300  ${hoveredGadget === "headphones" ? "scale-[1.01]" : ""
+                className={`transition-all duration-300 lg:translate-y-30 ${hoveredGadget === "headphones" ? "scale-[1.01]" : ""
                   }`}
               >
                 <h2 className="text-2xl font-bold font-display uppercase tracking-widest mb-6 text-accent">
@@ -346,7 +346,7 @@ export default function Home() {
                 initial="hidden"
                 animate={visibleSections.education ? "visible" : "hidden"}
                 variants={sectionVariants}
-                className={`transition-all duration-300 ${hoveredGadget === "book" ? "scale-[1.01]" : ""
+                className={`transition-all duration-300  lg:translate-y-28${hoveredGadget === "book" ? "scale-[1.01]" : ""
                   }`}
               >
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -731,7 +731,7 @@ export default function Home() {
                 initial="hidden"
                 animate={visibleSections.projects ? "visible" : "hidden"}
                 variants={sectionVariants}
-                className={`transition-all duration-300 ${hoveredGadget === "monitor" ? "scale-[1.01]" : ""
+                className={`transition-all duration-300 lg:translate-y-28 lg:translate-x-[80px] ${hoveredGadget === "monitor" ? "scale-[1.01]" : ""
                   }`}
               >
                 <h2 className="text-2xl font-bold font-display uppercase tracking-widest mb-6 text-accent">
@@ -828,7 +828,7 @@ export default function Home() {
           </div>
 
           {/* ================= BOTTOM ROW (RESEARCH & CERTIFICATIONS) ================= */}
-          <div className="mt-16 md:mt-24 max-w-4xl mx-auto">
+          <div className="mt-8 md:mt-12 max-w-3xl mx-auto">
             <motion.div
               ref={anchors.research}
               initial="hidden"
