@@ -346,7 +346,7 @@ export default function Home() {
                 initial="hidden"
                 animate={visibleSections.education ? "visible" : "hidden"}
                 variants={sectionVariants}
-                className={`transition-all duration-300  lg:translate-y-28${hoveredGadget === "book" ? "scale-[1.01]" : ""
+                className={`transition-all duration-300  lg:translate-y-28 ${hoveredGadget === "book" ? "scale-[1.01]" : ""
                   }`}
               >
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
