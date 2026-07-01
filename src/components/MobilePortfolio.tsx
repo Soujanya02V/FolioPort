@@ -19,7 +19,7 @@ import { portfolio } from "@/data/portfolio";
 import { getIcon } from "@/utils/icons";
 
 export default function MobilePortfolio() {
-  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string | null>("experience");
   const contentRef = useRef<HTMLDivElement>(null);
 
   const handleGadgetTap = (section: string) => {
