@@ -30,7 +30,7 @@ export default function DesktopPortfolio() {
   const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
 
   // Intro animation states
-  const [showIntro, setShowIntro] = useState<boolean>(false);
+  const [showIntro, setShowIntro] = useState<boolean>(true);
   const [introFinished, setIntroFinished] = useState<boolean>(false);
 
   // Visibility states for sections (starts invisible for boot sequence)
@@ -77,18 +77,29 @@ export default function DesktopPortfolio() {
     research: useRef<HTMLDivElement>(null),
   };
 
+  // Log showIntro state changes
+  useEffect(() => {
+    console.log("[STARTUP] showIntro state changed to:", showIntro);
+  }, [showIntro]);
+
   // Check if first-time visitor on client mount
   useEffect(() => {
-    const introSeen = localStorage.getItem("portfolio-intro-seen");
+    console.log("[STARTUP] DesktopPortfolio mounted, checking session storage for intro seen status...");
+    const introSeen = sessionStorage.getItem("portfolio-intro-seen");
+    console.log("[STARTUP] sessionStorage 'portfolio-intro-seen':", introSeen);
     if (!introSeen) {
+      console.log("[STARTUP] Intro not seen yet. Play intro animation.");
       setShowIntro(true);
     } else {
+      console.log("[STARTUP] Intro already seen in this session. Skipping to homepage.");
+      setShowIntro(false);
       setIntroFinished(true);
     }
   }, []);
 
   const handleIntroComplete = () => {
-    localStorage.setItem("portfolio-intro-seen", "true");
+    console.log("[STARTUP] handleIntroComplete called from IntroAnimation");
+    sessionStorage.setItem("portfolio-intro-seen", "true");
     setShowIntro(false);
     setIntroFinished(true);
   };
