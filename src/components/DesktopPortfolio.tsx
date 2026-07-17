@@ -104,7 +104,101 @@ export default function DesktopPortfolio() {
     setIntroFinished(true);
   };
 
-  // Coordinated Boot Sequence (deferred until intro finishes)
+  // Guided Tour refs and scroll animation logic
+  const tourCancelled = useRef(false);
+
+  const getMiddleScrollY = () => {
+    const hobbiesEl = anchors.hobbies.current;
+    const projectsEl = anchors.projects.current;
+    if (!hobbiesEl || !projectsEl) return 0;
+    const hobbiesY = hobbiesEl.getBoundingClientRect().top + window.scrollY;
+    const projectsY = projectsEl.getBoundingClientRect().top + window.scrollY;
+    const targetY = Math.min(hobbiesY, projectsY) - 100;
+    return Math.max(0, targetY);
+  };
+
+  const getLowerScrollY = () => {
+    const educationEl = anchors.education.current;
+    const skillsEl = anchors.skills.current;
+    const researchEl = anchors.research.current;
+    if (!educationEl || !skillsEl || !researchEl) return 0;
+    const educationY = educationEl.getBoundingClientRect().top + window.scrollY;
+    const skillsY = skillsEl.getBoundingClientRect().top + window.scrollY;
+    const researchY = researchEl.getBoundingClientRect().top + window.scrollY;
+    const targetY = Math.min(educationY, skillsY, researchY) - 100;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    return Math.min(maxScroll, Math.max(0, targetY));
+  };
+
+  const smoothScrollTo = (targetY: number, duration: number): Promise<void> => {
+    return new Promise((resolve) => {
+      if (tourCancelled.current) {
+        resolve();
+        return;
+      }
+
+      const startY = window.scrollY;
+      const diff = targetY - startY;
+      const startTime = performance.now();
+
+      const animateScroll = (timestamp: number) => {
+        if (tourCancelled.current) {
+          resolve();
+          return;
+        }
+
+        const elapsed = (timestamp - startTime) / 1000;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Ease in out quadratic
+        const ease = progress < 0.5 
+          ? 2 * progress * progress 
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+        window.scrollTo(0, startY + diff * ease);
+
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        } else {
+          resolve();
+        }
+      };
+
+      requestAnimationFrame(animateScroll);
+    });
+  };
+
+  const cancelTourAndCompleteBoot = () => {
+    if (tourCancelled.current) return;
+    tourCancelled.current = true;
+
+    setVisibleSections({
+      header: true,
+      experience: true,
+      hobbies: true,
+      education: true,
+      contact: true,
+      projects: true,
+      skills: true,
+      research: true,
+    });
+
+    setActivePulses({
+      "profile-to-phone": false,
+      "phone-to-contact": false,
+      "bag-to-experience": false,
+      "monitor-to-projects": false,
+      "monitor-to-keyboard": false,
+      "keyboard-to-research": false,
+      "mouse-to-skills": false,
+      "hobbies-to-headphones": false,
+      "book-to-education": false,
+    });
+
+    setBooting(false);
+  };
+
+  // Coordinated Boot Sequence & Camera Tour (deferred until intro finishes)
   const bootSequenceStarted = useRef(false);
   useEffect(() => {
     if (!introFinished) return;
@@ -113,93 +207,169 @@ export default function DesktopPortfolio() {
 
     const runBootSequence = async () => {
       // 0. Initial silence: only gadgets, profile, and inactive wires visible.
+      if (tourCancelled.current) return;
       await delay(1200);
 
       // 1. Profile to Phone/Tablet pulse starts
+      if (tourCancelled.current) return;
       setPulse("profile-to-phone", true);
       await delay(1000);
 
       // 2. Pulse reaches Phone. Phone powers on. Pulse to Contact starts.
+      if (tourCancelled.current) return;
       setVisibleSections(prev => ({ ...prev, header: true }));
       setPulse("profile-to-phone", false);
       setPulse("phone-to-contact", true);
       await delay(1000);
 
       // 3. Contact section appears.
+      if (tourCancelled.current) return;
       setVisibleSections(prev => ({ ...prev, contact: true }));
       setPulse("phone-to-contact", false);
       await delay(800);
 
       // 4. Pulse starts from central hub to Bag -> Experience
+      if (tourCancelled.current) return;
       setPulse("bag-to-experience", true);
       await delay(1100);
 
       // 5. Bag powers on. Experience section appears.
+      if (tourCancelled.current) return;
       setVisibleSections(prev => ({ ...prev, experience: true }));
       setPulse("bag-to-experience", false);
       await delay(800);
 
+      // ==========================================
+      // Guided Tour Step 1: Scroll to middle sections
+      // ==========================================
+      if (tourCancelled.current) return;
+      const scrollPromise = smoothScrollTo(getMiddleScrollY(), 2.2);
+
       // 6. Pulse flows down from central hub: Monitor to Projects and Monitor to Headphones
+      if (tourCancelled.current) return;
       setPulse("monitor-to-projects", true);
       setPulse("monitor-to-headphones", true);
       await delay(1100);
 
       // 7. Monitor powers on. Projects appears.
+      if (tourCancelled.current) return;
       setVisibleSections(prev => ({ ...prev, projects: true }));
       setPulse("monitor-to-projects", false);
       await delay(400);
 
       // 8. Headphones power on. Hobbies pulse (from Headphones to Hobbies) starts.
+      if (tourCancelled.current) return;
       setPulse("monitor-to-headphones", false);
       setPulse("hobbies-to-headphones", true);
       await delay(1000);
 
       // 9. Hobbies section appears.
+      if (tourCancelled.current) return;
       setVisibleSections(prev => ({ ...prev, hobbies: true }));
       setPulse("hobbies-to-headphones", false);
       await delay(600);
 
+      // Wait for camera scroll to arrive if it hasn't
+      await scrollPromise;
+
+      // Pause briefly at the middle (about 0.8–1 second)
+      if (tourCancelled.current) return;
+      await delay(1000);
+
+      // ==========================================
+      // Guided Tour Step 2: Scroll to lower sections
+      // ==========================================
+      if (tourCancelled.current) return;
+      const lowerScrollPromise = smoothScrollTo(getLowerScrollY(), 2.5);
+
       // 10. Pulse flows from Headphones down to Book, then to Education
+      if (tourCancelled.current) return;
       setPulse("headphones-to-book", true);
       await delay(800);
+      if (tourCancelled.current) return;
       setPulse("headphones-to-book", false);
       setPulse("book-to-education", true);
       await delay(1000);
 
       // 11. Book powers on. Education and Languages appear.
+      if (tourCancelled.current) return;
       setVisibleSections(prev => ({ ...prev, education: true }));
       setPulse("book-to-education", false);
       await delay(600);
 
       // 12. Monitor flows to Keyboard -> Research
+      if (tourCancelled.current) return;
       setPulse("monitor-to-keyboard", true);
       await delay(600);
+      if (tourCancelled.current) return;
       setPulse("monitor-to-keyboard", false);
       setPulse("keyboard-to-research", true);
       await delay(1000);
 
       // 13. Keyboard powers on. Research & Certifications appear.
+      if (tourCancelled.current) return;
       setVisibleSections(prev => ({ ...prev, research: true }));
       setPulse("keyboard-to-research", false);
       await delay(600);
 
       // 14. Keyboard flows to Mouse -> Skills
+      if (tourCancelled.current) return;
       setPulse("keyboard-to-mouse", true);
       await delay(600);
+      if (tourCancelled.current) return;
       setPulse("keyboard-to-mouse", false);
       setPulse("mouse-to-skills", true);
       await delay(1000);
 
       // 15. Mouse powers on. Software Skills appear.
+      if (tourCancelled.current) return;
       setVisibleSections(prev => ({ ...prev, skills: true }));
       setPulse("mouse-to-skills", false);
 
+      // Wait for camera scroll to arrive if it hasn't
+      await lowerScrollPromise;
+
+      // Pause again briefly (about 0.8–1 second)
+      if (tourCancelled.current) return;
+      await delay(1000);
+
+      // ==========================================
+      // Guided Tour Step 3: Scroll back to the top
+      // ==========================================
+      if (tourCancelled.current) return;
+      await smoothScrollTo(0, 2.5);
+
       // 16. Boot sequence complete
+      if (tourCancelled.current) return;
       setBooting(false);
     };
 
     runBootSequence();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [introFinished]);
+
+  // Listen for user scroll/interaction to cancel guided tour
+  useEffect(() => {
+    if (!introFinished || !booting) return;
+
+    const handleInteraction = () => {
+      cancelTourAndCompleteBoot();
+    };
+
+    window.addEventListener("wheel", handleInteraction, { passive: true });
+    window.addEventListener("touchmove", handleInteraction, { passive: true });
+    window.addEventListener("touchstart", handleInteraction, { passive: true });
+    window.addEventListener("mousedown", handleInteraction, { passive: true });
+    window.addEventListener("keydown", handleInteraction, { passive: true });
+
+    return () => {
+      window.removeEventListener("wheel", handleInteraction);
+      window.removeEventListener("touchmove", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("mousedown", handleInteraction);
+      window.removeEventListener("keydown", handleInteraction);
+    };
+  }, [introFinished, booting]);
 
   // Track cursor position for the tiny orange glow
   useEffect(() => {
