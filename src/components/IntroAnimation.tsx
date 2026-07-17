@@ -21,7 +21,7 @@ interface Cell {
 }
 
 // Custom pixel-perfect font maps for "I AM" and "SOUJANYA"
-// 7x11 grid font for desktop/large screens (cols >= 125)
+// 7x11 grid font for desktop/large screens (cols >= 105)
 const FONT_7X11: Record<string, string[]> = {
   'I': [
     "1111111",
@@ -155,7 +155,7 @@ const FONT_7X11: Record<string, string[]> = {
   ]
 };
 
-// 5x7 grid font for mobile/small screens (cols < 125)
+// 5x7 grid font for mobile/small screens (cols < 105)
 const FONT_5X7: Record<string, string[]> = {
   'I': [
     "11111",
@@ -288,7 +288,7 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
       canvas.style.height = `${height}px`;
 
       // Select dynamic responsive scale for grid cols
-      let targetCols = Math.round(Math.max(120, Math.min(200, width / 7)));
+      let targetCols = Math.round(Math.max(100, Math.min(165, width / 8.2)));
       if (targetCols < 80) {
         targetCols = 80; // Enforce minimum columns so the text maps correctly
       }
@@ -308,7 +308,7 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
 
       // Font Configuration & Two-Line Setup
       const lines = ["I AM", "SOUJANYA"];
-      const useLargeFont = cols >= 125;
+      const useLargeFont = cols >= 105;
       const fontMap = useLargeFont ? FONT_7X11 : FONT_5X7;
       const fontWidth = useLargeFont ? 7 : 5;
       const fontHeight = useLargeFont ? 11 : 7;
