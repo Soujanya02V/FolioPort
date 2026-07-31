@@ -936,12 +936,16 @@ export default function DesktopPortfolio() {
                         </p>
                       </div>
                       <div className="flex items-center space-x-2 shrink-0 pt-0.5 opacity-40 group-hover:opacity-100 transition-opacity duration-300">
-                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
-                          {getIcon("GithubIcon", 13)}
-                        </a>
-                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
-                          <ExternalLink size={13} />
-                        </a>
+                        {project.githubLink && (
+                          <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
+                            {getIcon("GithubIcon", 13)}
+                          </a>
+                        )}
+                        {project.liveLink && (
+                          <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
+                            <ExternalLink size={13} />
+                          </a>
+                        )}
                       </div>
                     </div>
                   ))}

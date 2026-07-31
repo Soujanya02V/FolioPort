@@ -30,7 +30,8 @@ export interface LanguageItem {
 export interface ProjectItem {
   title: string;
   desc: string;
-  link: string;
+  liveLink?: string;
+  githubLink?: string;
 }
 
 export interface DesignerSkill {

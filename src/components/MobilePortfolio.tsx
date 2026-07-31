@@ -166,12 +166,16 @@ export default function MobilePortfolio() {
                     </p>
                   </div>
                   <div className="flex items-center space-x-3 shrink-0 pt-0.5">
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-white">
-                      {getIcon("GithubIcon", 15)}
-                    </a>
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-white">
-                      <ExternalLink size={15} />
-                    </a>
+                    {project.githubLink && (
+                      <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-white">
+                        {getIcon("GithubIcon", 15)}
+                      </a>
+                    )}
+                    {project.liveLink && (
+                      <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-white">
+                        <ExternalLink size={15} />
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}

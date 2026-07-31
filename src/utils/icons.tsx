@@ -22,6 +22,9 @@ import {
   Workflow,
   Terminal,
   Grid,
+  Globe,
+  Laptop,
+  Binary,
 } from "lucide-react";
 
 // Custom SVG components for brand icons to ensure compatibility
@@ -114,7 +117,14 @@ export const getIcon = (name: string, size: number = 16) => {
     case "Layers":
       return <Layers size={size} />;
     case "Cpu":
+    case "CPU":
       return <Cpu size={size} />;
+    case "Globe":
+      return <Globe size={size} />;
+    case "Laptop":
+      return <Laptop size={size} />;
+    case "Binary":
+      return <Binary size={size} />;
     case "Brain":
       return <Brain size={size} />;
     case "Workflow":
