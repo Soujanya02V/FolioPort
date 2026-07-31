@@ -46,24 +46,26 @@ export const portfolio: PortfolioData = {
   ],
   education: [
     {
-      year: "2013-2017",
-      school: "RAJAMANGALA UNIVERSITY OF TECHNOLOGY LANNA",
-      desc: "Faculty of Fine Arts and Architecture. ( GPA 3.73 )",
+      year: "2023-present",
+      school: "MVJ College of Engineering, Bengaluru",
+      desc: "Bachelor of Engineering in Computer Science & Engineering.",
     },
     {
-      year: "2010-2012",
-      school: "SANSAIWITTAYAKOM SCHOOL",
-      desc: "ม.ปลาย (ม.4-6) ( GPA 3.06 )",
+      year: "2021-2023",
+      school: "Aryabhata College Of Science, Dharwad",
+      desc: "Pre-University Course .",
     },
     {
-      year: "2007-2009",
-      school: "SANSAIWITTAYAKOM SCHOOL",
-      desc: "ม.ต้น (ม.1-3) ( GPA 3.69 )",
+      year: "2020",
+      school: "Holy Cross Convent School, Belgaum",
+      desc: "Secondary School Leaving Certificate (SSLC).",
     },
   ],
   languages: [
-    { name: "Thai", level: "Native", code: "TH" },
-    { name: "English", level: "Professional", code: "GB" },
+    { name: "English" },
+    { name: "Hindi" },
+    { name: "Kannada" },
+    { name: "Marathi" },
   ],
   projects: [
     {
@@ -99,22 +101,30 @@ export const portfolio: PortfolioData = {
   ],
   skills: {
     designers: [
-      { abbr: "Ai", full: "Adobe Illustrator" },
-      { abbr: "Ps", full: "Adobe Photoshop" },
-      { abbr: "Lr", full: "Adobe Lightroom" },
+      { abbr: "Git", full: "Git & GitHub" },
+      { abbr: "Dkr", full: "Docker" },
+      { abbr: "API", full: "Rest APIs " },
     ],
     developers: [
       "C++",
-      "Java",
+
       "Python",
       "JavaScript",
       "SQL",
       "React",
       "Node.js",
       "MongoDB",
-      "HTML",
-      "CSS",
-      "Tailwind",
+      //"HTML",
+      //"CSS",
+      //"Tailwind",
+      "Kubernetes",
+      "Ansible",
+      "Helm",
+      "Grafana",
+      "Prometheus",
+      "Linux"
+
+
     ],
   },
   contact: [

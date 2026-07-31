@@ -115,26 +115,11 @@ export default function MobilePortfolio() {
               <div className="space-y-4">
                 {portfolio.languages.map((item, idx) => (
                   <div key={idx} className="flex items-center space-x-3">
-                    <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10 flex items-center justify-center shrink-0">
-                      {item.code === "TH" ? (
-                        <svg viewBox="0 0 9 6" className="w-full h-full object-cover">
-                          <rect fill="#A51931" width="9" height="6" />
-                          <rect fill="#F4F5F8" y="1" width="9" height="4" />
-                          <rect fill="#2D2A4A" y="2" width="9" height="2" />
-                        </svg>
-                      ) : (
-                        <svg viewBox="0 0 50 30" className="w-full h-full object-cover">
-                          <rect fill="#012169" width="50" height="30" />
-                          <path d="M0 0 L50 30 M50 0 L0 30" stroke="#FFF" strokeWidth="6" />
-                          <path d="M0 0 L50 30 M50 0 L0 30" stroke="#C8102E" strokeWidth="4" />
-                          <path d="M25 0 V30 M0 15 H50" stroke="#FFF" strokeWidth="10" />
-                          <path d="M25 0 V30 M0 15 H50" stroke="#C8102E" strokeWidth="6" />
-                        </svg>
-                      )}
-                    </div>
                     <div>
                       <span className="text-sm font-bold block text-white/85">{item.name}</span>
-                      <span className="text-[10px] text-accent font-semibold">{item.level}</span>
+                      {item.level && (
+                        <span className="text-[10px] text-accent font-semibold">{item.level}</span>
+                      )}
                     </div>
                   </div>
                 ))}

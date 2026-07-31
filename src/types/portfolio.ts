@@ -23,8 +23,7 @@ export interface EducationItem {
 
 export interface LanguageItem {
   name: string;
-  level: string;
-  code: string; // "TH" | "GB"
+  level?: string;
 }
 
 export interface ProjectItem {
