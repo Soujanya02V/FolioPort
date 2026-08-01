@@ -25,6 +25,25 @@ import {
   Globe,
   Laptop,
   Binary,
+  BriefcaseBusiness,
+  Briefcase,
+  BadgeCheck,
+  Award,
+  Medal,
+  Star,
+  Flag,
+  Trophy,
+  Crown,
+  Target,
+  GitBranch,
+  MonitorSmartphone,
+  Building2,
+  BrainCircuit,
+  Puzzle,
+  Code2,
+  Users,
+  UserRoundCog,
+  ShieldCheck,
 } from "lucide-react";
 
 // Custom SVG components for brand icons to ensure compatibility
@@ -133,6 +152,45 @@ export const getIcon = (name: string, size: number = 16) => {
       return <Terminal size={size} />;
     case "Grid":
       return <Grid size={size} />;
+    case "BriefcaseBusiness":
+      return <BriefcaseBusiness size={size} />;
+    case "Briefcase":
+      return <Briefcase size={size} />;
+    case "BadgeCheck":
+      return <BadgeCheck size={size} />;
+    case "Award":
+      return <Award size={size} />;
+    case "Medal":
+      return <Medal size={size} />;
+    case "Star":
+      return <Star size={size} />;
+    case "Flag":
+      return <Flag size={size} />;
+    case "Trophy":
+      return <Trophy size={size} />;
+    case "Crown":
+      return <Crown size={size} />;
+    case "Target":
+      return <Target size={size} />;
+    case "GitBranch":
+      return <GitBranch size={size} />;
+    case "MonitorSmartphone":
+      return <MonitorSmartphone size={size} />;
+    case "Building2":
+      return <Building2 size={size} />;
+    case "BrainCircuit":
+      return <BrainCircuit size={size} />;
+    case "Puzzle":
+      return <Puzzle size={size} />;
+    case "Code2":
+      return <Code2 size={size} />;
+    case "Users":
+      return <Users size={size} />;
+    case "UserRoundCog":
+      return <UserRoundCog size={size} />;
+    case "ShieldCheck":
+      return <ShieldCheck size={size} />;
+    case "Github":
     case "GithubIcon":
       return <GithubIcon size={size} />;
     case "LinkedinIcon":

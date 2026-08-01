@@ -49,7 +49,7 @@ export interface ContactItem {
   href: string | null;
 }
 
-export interface ResearchItem {
+export interface AchievementItem {
   icon: string;
   title: string;
   text: string;
@@ -64,6 +64,6 @@ export interface PortfolioData {
   projects: ProjectItem[];
   skills: Skills;
   contact: ContactItem[];
-  research: ResearchItem[];
-  certifications: ResearchItem[];
+  achievements: AchievementItem[];
+  recognition: AchievementItem[];
 }

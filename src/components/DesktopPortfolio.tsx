@@ -42,7 +42,7 @@ export default function DesktopPortfolio() {
     contact: false,
     projects: false,
     skills: false,
-    research: false,
+    achievements: false,
   });
 
   // Active pulses state for CircuitWiring
@@ -52,7 +52,7 @@ export default function DesktopPortfolio() {
     "bag-to-experience": false,
     "monitor-to-projects": false,
     "monitor-to-keyboard": false,
-    "keyboard-to-research": false,
+    "keyboard-to-achievements": false,
     "mouse-to-skills": false,
     "hobbies-to-headphones": false,
     "book-to-education": false,
@@ -74,7 +74,7 @@ export default function DesktopPortfolio() {
     contact: useRef<HTMLDivElement>(null),
     projects: useRef<HTMLDivElement>(null),
     skills: useRef<HTMLDivElement>(null),
-    research: useRef<HTMLDivElement>(null),
+    achievements: useRef<HTMLDivElement>(null),
   };
 
   // Log showIntro state changes
@@ -120,12 +120,12 @@ export default function DesktopPortfolio() {
   const getLowerScrollY = () => {
     const educationEl = anchors.education.current;
     const skillsEl = anchors.skills.current;
-    const researchEl = anchors.research.current;
-    if (!educationEl || !skillsEl || !researchEl) return 0;
+    const achievementsEl = anchors.achievements.current;
+    if (!educationEl || !skillsEl || !achievementsEl) return 0;
     const educationY = educationEl.getBoundingClientRect().top + window.scrollY;
     const skillsY = skillsEl.getBoundingClientRect().top + window.scrollY;
-    const researchY = researchEl.getBoundingClientRect().top + window.scrollY;
-    const targetY = Math.min(educationY, skillsY, researchY) - 100;
+    const achievementsY = achievementsEl.getBoundingClientRect().top + window.scrollY;
+    const targetY = Math.min(educationY, skillsY, achievementsY) - 100;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     return Math.min(maxScroll, Math.max(0, targetY));
   };
@@ -180,7 +180,7 @@ export default function DesktopPortfolio() {
       contact: true,
       projects: true,
       skills: true,
-      research: true,
+      achievements: true,
     });
 
     setActivePulses({
@@ -189,7 +189,7 @@ export default function DesktopPortfolio() {
       "bag-to-experience": false,
       "monitor-to-projects": false,
       "monitor-to-keyboard": false,
-      "keyboard-to-research": false,
+      "keyboard-to-achievements": false,
       "mouse-to-skills": false,
       "hobbies-to-headphones": false,
       "book-to-education": false,
@@ -297,19 +297,19 @@ export default function DesktopPortfolio() {
       setPulse("book-to-education", false);
       await delay(600);
 
-      // 12. Monitor flows to Keyboard -> Research
+      // 12. Monitor flows to Keyboard -> Achievements
       if (tourCancelled.current) return;
       setPulse("monitor-to-keyboard", true);
       await delay(600);
       if (tourCancelled.current) return;
       setPulse("monitor-to-keyboard", false);
-      setPulse("keyboard-to-research", true);
+      setPulse("keyboard-to-achievements", true);
       await delay(1000);
 
-      // 13. Keyboard powers on. Research & Certifications appear.
+      // 13. Keyboard powers on. Achievements & Recognition appear.
       if (tourCancelled.current) return;
-      setVisibleSections(prev => ({ ...prev, research: true }));
-      setPulse("keyboard-to-research", false);
+      setVisibleSections(prev => ({ ...prev, achievements: true }));
+      setPulse("keyboard-to-achievements", false);
       await delay(600);
 
       // 14. Keyboard flows to Mouse -> Skills
@@ -745,15 +745,15 @@ export default function DesktopPortfolio() {
                 <div className="lg:absolute lg:top-[195px] lg:left-[calc(50%-65px)]">
                   <KeyboardGadget
                     id="keyboard"
-                    isActive={visibleSections.research}
+                    isActive={visibleSections.achievements}
                     isHovered={hoveredGadget === "keyboard"}
                     onHoverStart={() => {
                       setHoveredGadget("keyboard");
-                      triggerHoverPulse("keyboard-to-research");
+                      triggerHoverPulse("keyboard-to-achievements");
                     }}
                     onHoverEnd={() => {
                       setHoveredGadget(null);
-                      clearHoverPulse("keyboard-to-research");
+                      clearHoverPulse("keyboard-to-achievements");
                     }}
                     anchorRef={anchors.keyboard}
                   />
@@ -995,23 +995,23 @@ export default function DesktopPortfolio() {
             </div>
           </div>
 
-          {/* ================= BOTTOM ROW (RESEARCH & CERTIFICATIONS) ================= */}
+          {/* ================= BOTTOM ROW (ACHIEVEMENTS & RECOGNITION) ================= */}
           <div className="mt-8 md:mt-12 max-w-3xl mx-auto">
             <motion.div
-              ref={anchors.research}
+              ref={anchors.achievements}
               initial="hidden"
-              animate={visibleSections.research ? "visible" : "hidden"}
+              animate={visibleSections.achievements ? "visible" : "hidden"}
               variants={sectionVariants}
               className={`transition-all duration-300 ${hoveredGadget === "keyboard" ? "scale-[1.01]" : ""
                 }`}
             >
               <h2 className="text-2xl font-bold font-display uppercase tracking-widest text-center mb-8 text-accent">
-                Research & Certifications
+                Achievements & Recognition
               </h2>
 
               {/* Technical grid blueprint boxes */}
               <div className="border border-white/10 rounded overflow-hidden bg-white/5 grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/10 text-center">
-                {portfolio.research.map((item, idx) => (
+                {portfolio.achievements.map((item, idx) => (
                   <div
                     key={idx}
                     className="p-6 flex flex-col items-center justify-center group hover:bg-[#0E0E10]/40 transition-colors duration-300"
@@ -1040,7 +1040,7 @@ export default function DesktopPortfolio() {
 
               {/* Bottom Row inside Grid: RAG, DevOps, LLM, System Design */}
               <div className="border-x border-b border-white/10 rounded-b bg-white/5 grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/10 text-center">
-                {portfolio.certifications.map((item, idx) => (
+                {portfolio.recognition.map((item, idx) => (
                   <div
                     key={idx}
                     className="p-5 flex flex-col items-center justify-center group hover:bg-[#0E0E10]/40 transition-colors duration-300"

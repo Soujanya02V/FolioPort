@@ -136,16 +136,49 @@ export const portfolio: PortfolioData = {
     // { icon: "InstagramIcon", text: "soujanya.codes", href: "https://instagram.com/soujanya.codes" },
     // { icon: "MessageSquare", text: "soujanya_ln", href: null },
   ],
-  research: [
-    { icon: "FileText", title: "Research Papers", text: "Published ML paper" },
-    { icon: "Cloud", title: "AWS Certified", text: "Cloud Architect Associate" },
-    { icon: "Layers", title: "Docker", text: "Container orchestration" },
-    { icon: "Cpu", title: "Terraform", text: "Infrastructure as Code" },
+  achievements: [
+    {
+      icon: "Briefcase",
+      title: "Internship",
+      text: "Full Stack Development Intern",
+    },
+    {
+      icon: "Award",
+      title: "Project Contribution",
+      text: "Recognized for development contributions",
+    },
+    {
+      icon: "Flag",
+      title: "Hackathon Organizer",
+      text: "PixelGenesis • 24-hour National Hackathon",
+    },
+    {
+      icon: "Trophy",
+      title: "Hackathon Participant",
+      text: "National-level hackathons",
+    },
   ],
-  certifications: [
-    { icon: "Brain", title: "RAG", text: "Retrieval Augmented Gen" },
-    { icon: "Workflow", title: "DevOps", text: "CI/CD & Pipelines" },
-    { icon: "Terminal", title: "LLM", text: "Large Language Models" },
-    { icon: "Grid", title: "System Design", text: "Scalable Architecture" },
+
+  recognition: [
+    {
+      icon: "Github",
+      title: "Open Source",
+      text: "Public GitHub Projects",
+    },
+    {
+      icon: "Laptop",
+      title: "Freelance",
+      text: "Gokarna Pooja Services Website",
+    },
+    {
+      icon: "Code2",
+      title: "LeetCode",
+      text: "DSA Practice & Problem Solving",
+    },
+    {
+      icon: "Users",
+      title: "Leadership",
+      text: "Vice President • NIC Technical Club",
+    },
   ],
 };

@@ -123,8 +123,8 @@ export const CircuitWiring: React.FC<CircuitWiringProps> = ({ anchors, activePul
     // 4. Monitor stand to Keyboard
     addWire("monitor-to-keyboard", "monitor", "bottom", "keyboard", "top", "direct");
 
-    // 5. Keyboard to Research section
-    addWire("keyboard-to-research", "keyboard", "bottom", "research", "top", "v-h-v");
+    // 5. Keyboard to Achievements section
+    addWire("keyboard-to-achievements", "keyboard", "bottom", "achievements", "top", "v-h-v");
 
     // 6. Mouse to Software Skills
     addWire("mouse-to-skills", "mouse", "bottom", "skills", "left", "mouse-skills");

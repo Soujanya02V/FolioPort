@@ -40,7 +40,7 @@ export default function MobilePortfolio() {
     { id: "headphones", pathD: "M 160 150 H 50", isActive: activeSection === "hobbies" },
     { id: "phone", pathD: "M 160 150 H 270", isActive: activeSection === "contact" },
     { id: "mouse", pathD: "M 160 150 L 100 210 V 240", isActive: activeSection === "skills" },
-    { id: "keyboard", pathD: "M 160 150 L 220 210 V 240", isActive: activeSection === "research" },
+    { id: "keyboard", pathD: "M 160 150 L 220 210 V 240", isActive: activeSection === "achievements" },
   ];
 
   const renderSectionContent = (section: string) => {
@@ -237,15 +237,15 @@ export default function MobilePortfolio() {
             </div>
           </div>
         );
-      case "research":
+      case "achievements":
         return (
           <div className="space-y-6">
             <div>
               <h2 className="text-xl font-bold font-display uppercase tracking-widest mb-4 text-accent">
-                Research & Certifications
+                Achievements & Recognition
               </h2>
               <div className="border border-white/10 rounded overflow-hidden bg-white/5 grid grid-cols-2 divide-x divide-y divide-white/10 text-center">
-                {portfolio.research.map((item, idx) => (
+                {portfolio.achievements.map((item, idx) => (
                   <div key={idx} className="p-4 flex flex-col items-center justify-center">
                     <div className="p-2 rounded border border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)] mb-2">
                       {getIcon(item.icon, 16)}
@@ -260,7 +260,7 @@ export default function MobilePortfolio() {
             </div>
             <div>
               <div className="border border-white/10 rounded bg-white/5 grid grid-cols-2 divide-x divide-y divide-white/10 text-center">
-                {portfolio.certifications.map((item, idx) => (
+                {portfolio.recognition.map((item, idx) => (
                   <div key={idx} className="p-4 flex flex-col items-center justify-center">
                     <div className="p-2 rounded border border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)] mb-2">
                       {getIcon(item.icon, 14)}
@@ -534,9 +534,9 @@ export default function MobilePortfolio() {
             >
               <KeyboardGadget
                 id="keyboard"
-                isActive={activeSection === "research"}
+                isActive={activeSection === "achievements"}
                 isHovered={false}
-                onClick={() => handleGadgetTap("research")}
+                onClick={() => handleGadgetTap("achievements")}
               />
             </div>
           </div>
