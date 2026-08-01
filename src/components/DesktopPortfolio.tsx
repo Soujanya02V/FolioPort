@@ -18,6 +18,7 @@ import {
 } from "@/components/Gadget";
 import { CircuitWiring } from "@/components/CircuitWiring";
 import IntroAnimation from "@/components/IntroAnimation";
+import Footer from "@/components/Footer";
 
 // Centralized portfolio data
 import { portfolio } from "@/data/portfolio";
@@ -1068,6 +1069,8 @@ export default function DesktopPortfolio() {
               </div>
             </motion.div>
           </div>
+
+          <Footer />
 
         </div>
       </main>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Outfit, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 
@@ -19,9 +19,50 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "Soujanya | Interactive Engineering Blueprint Portfolio",
-  description: "Interactive digital identity and engineering blueprint profile page of Soujanya, Software Engineer, AI Researcher, and Full Stack Developer.",
+  title: "Soujanya Maharudra | Portfolio",
+  description: "Computer Science Engineering student specializing in Full Stack Development, DevOps, Research, and Software Engineering.",
+  metadataBase: new URL("https://soujanyamaharudra.dev"),
+  alternates: {
+    canonical: "/",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  manifest: "/site.webmanifest",
+  openGraph: {
+    title: "Soujanya Maharudra | Portfolio",
+    description: "Computer Science Engineering student specializing in Full Stack Development, DevOps, Research, and Software Engineering.",
+    url: "https://soujanyamaharudra.dev",
+    siteName: "Soujanya Maharudra Portfolio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Soujanya Maharudra Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Soujanya Maharudra | Portfolio",
+    description: "Computer Science Engineering student specializing in Full Stack Development, DevOps, Research, and Software Engineering.",
+    images: ["/og-image.png"],
+  },
 };
+
+export const viewport: Viewport = {
+  themeColor: "#FF6A00",
+};
+
 
 export default function RootLayout({
   children,

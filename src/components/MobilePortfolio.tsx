@@ -17,6 +17,7 @@ import {
 // Centralized portfolio data
 import { portfolio } from "@/data/portfolio";
 import { getIcon } from "@/utils/icons";
+import Footer from "@/components/Footer";
 
 export default function MobilePortfolio() {
   const [activeSection, setActiveSection] = useState<string | null>("experience");
@@ -566,6 +567,8 @@ export default function MobilePortfolio() {
           )}
         </AnimatePresence>
       </div>
+
+      <Footer />
 
     </main>
   );
