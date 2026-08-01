@@ -4,7 +4,7 @@ A modern interactive portfolio showcasing my projects, skills, achievements, cer
 
 ## Live Demo
 
-👉 https://folio-port-nine.vercel.app
+👉 https://www.soujanyamaharudra.dev/
 
 ## Built With
 
