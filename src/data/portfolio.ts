@@ -3,9 +3,9 @@ import { PortfolioData } from "../types/portfolio";
 export const portfolio: PortfolioData = {
   profile: {
     name: "SOUJANYA",
-    titles: ["SOFTWARE ENGINEER", "AI RESEARCHER", "FULL STACK DEVELOPER"],
-    status: "SYSTEM ONLINE",
-    quote: "Building solutions, creating impact.",
+    titles: ["Devops ENGINEER", "AI RESEARCHER", "FULL STACK DEVELOPER"],
+    status: "Hello World!!",
+    quote: "Currently building tomorrow's GitHub commits.",
   },
   experience: [
     // {
