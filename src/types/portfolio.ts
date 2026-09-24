@@ -53,6 +53,7 @@ export interface AchievementItem {
   icon: string;
   title: string;
   text: string;
+  image?: string;
 }
 
 export interface PortfolioData {

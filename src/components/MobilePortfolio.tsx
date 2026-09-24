@@ -245,9 +245,21 @@ export default function MobilePortfolio() {
               <h2 className="text-xl font-bold font-display uppercase tracking-widest mb-4 text-accent">
                 Achievements & Recognition
               </h2>
-              <div className="border border-white/10 rounded overflow-hidden bg-white/5 grid grid-cols-2 divide-x divide-y divide-white/10 text-center">
+              <div className="border border-white/10 rounded bg-white/5 grid grid-cols-2 divide-x divide-y divide-white/10 text-center relative z-20">
                 {portfolio.achievements.map((item, idx) => (
-                  <div key={idx} className="p-4 flex flex-col items-center justify-center">
+                  <div key={idx} className="relative p-4 flex flex-col items-center justify-center group active:bg-[#0E0E10]/60 hover:bg-[#0E0E10]/60 transition-colors duration-300">
+                    {item.image && (
+                      <div className="absolute -top-[180px] left-1/2 -translate-x-1/2 z-50 opacity-0 scale-90 translate-y-2 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-active:opacity-100 group-active:scale-100 group-active:translate-y-0 transition-all duration-300 ease-out pointer-events-none flex flex-col items-center">
+                        <div className="p-1.5 rounded-xl bg-[#0B0B0D] border border-accent/60 shadow-[0_0_20px_rgba(255,106,0,0.5)] overflow-hidden w-64 h-40 flex items-center justify-center">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-full h-full object-contain rounded bg-black opacity-100"
+                          />
+                        </div>
+                        <div className="w-2.5 h-2.5 bg-[#0B0B0D] border-r border-b border-accent/60 rotate-45 -mt-1 shadow-md"></div>
+                      </div>
+                    )}
                     <div className="p-2 rounded border border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)] mb-2">
                       {getIcon(item.icon, 16)}
                     </div>
@@ -259,21 +271,35 @@ export default function MobilePortfolio() {
                 ))}
               </div>
             </div>
-            <div>
-              <div className="border border-white/10 rounded bg-white/5 grid grid-cols-2 divide-x divide-y divide-white/10 text-center">
-                {portfolio.recognition.map((item, idx) => (
-                  <div key={idx} className="p-4 flex flex-col items-center justify-center">
-                    <div className="p-2 rounded border border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)] mb-2">
-                      {getIcon(item.icon, 14)}
+            {portfolio.recognition && portfolio.recognition.length > 0 && (
+              <div>
+                <div className="border border-white/10 rounded bg-white/5 grid grid-cols-2 divide-x divide-y divide-white/10 text-center relative z-10">
+                  {portfolio.recognition.map((item, idx) => (
+                    <div key={idx} className="relative p-4 flex flex-col items-center justify-center group active:bg-[#0E0E10]/60 hover:bg-[#0E0E10]/60 transition-colors duration-300">
+                      {item.image && (
+                        <div className="absolute -top-[180px] left-1/2 -translate-x-1/2 z-50 opacity-0 scale-90 translate-y-2 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-active:opacity-100 group-active:scale-100 group-active:translate-y-0 transition-all duration-300 ease-out pointer-events-none flex flex-col items-center">
+                          <div className="p-1.5 rounded-xl bg-[#0B0B0D] border border-accent/60 shadow-[0_0_20px_rgba(255,106,0,0.5)] overflow-hidden w-64 h-40 flex items-center justify-center">
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              className="w-full h-full object-contain rounded bg-black opacity-100"
+                            />
+                          </div>
+                          <div className="w-2.5 h-2.5 bg-[#0B0B0D] border-r border-b border-accent/60 rotate-45 -mt-1 shadow-md"></div>
+                        </div>
+                      )}
+                      <div className="p-2 rounded border border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)] mb-2">
+                        {getIcon(item.icon, 14)}
+                      </div>
+                      <h4 className="text-[9px] font-bold uppercase tracking-widest text-white/80">
+                        {item.title}
+                      </h4>
+                      <p className="text-[8px] text-white/40">{item.text}</p>
                     </div>
-                    <h4 className="text-[9px] font-bold uppercase tracking-widest text-white/80">
-                      {item.title}
-                    </h4>
-                    <p className="text-[8px] text-white/40">{item.text}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         );
       default:

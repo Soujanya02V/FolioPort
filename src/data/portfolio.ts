@@ -140,45 +140,55 @@ export const portfolio: PortfolioData = {
     {
       icon: "Briefcase",
       title: "Internship",
-      text: "Full Stack Development Intern",
+      text: "WebMuseHub • Full Stack Intern",
+      image: "/images/achievements/internship.jpg",
     },
     {
-      icon: "Award",
-      title: "Project Contribution",
-      text: "Recognized for development contributions",
+      icon: "FileText",
+      title: "IEEE Research Paper",
+      text: "IEEE ICDSCNC • Graph Algorithms Paper",
+      image: "/images/achievements/ieee-research.jpg",
     },
     {
       icon: "Flag",
       title: "Hackathon Organizer",
       text: "PixelGenesis • 24-hour National Hackathon",
+      image: "/images/achievements/hackathon-organizer.png",
     },
     {
       icon: "Trophy",
-      title: "Hackathon Participant",
-      text: "National-level hackathons",
+      title: "Hackathon Winner",
+      text: "3rd Place • IEEE NITK 96-hr ML Challenge",
+      image: "/images/achievements/hackathon-winner.jpg",
     },
   ],
 
   recognition: [
+    /*
     {
       icon: "Github",
       title: "Open Source",
       text: "Public GitHub Projects",
+      image: "/images/achievements/open-source.svg",
     },
     {
       icon: "Laptop",
       title: "Freelance",
       text: "Gokarna Pooja Services Website",
+      image: "/images/achievements/freelance.svg",
     },
     {
       icon: "Code2",
       title: "LeetCode",
-      text: "DSA Practice & Problem Solving",
+      text: "100 Days Badge 2025 • 100+ Days",
+      image: "/images/achievements/leetcode.png",
     },
     {
       icon: "Users",
       title: "Leadership",
       text: "Vice President • NIC Technical Club",
+      image: "/images/achievements/leadership.svg",
     },
+    */
   ],
 };

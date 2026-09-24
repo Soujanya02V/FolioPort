@@ -1011,12 +1011,26 @@ export default function DesktopPortfolio() {
               </h2>
 
               {/* Technical grid blueprint boxes */}
-              <div className="border border-white/10 rounded overflow-hidden bg-white/5 grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/10 text-center">
+              <div className={`border border-white/10 ${portfolio.recognition && portfolio.recognition.length > 0 ? "rounded-t" : "rounded"} bg-white/5 grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/10 text-center relative z-20`}>
                 {portfolio.achievements.map((item, idx) => (
                   <div
                     key={idx}
-                    className="p-6 flex flex-col items-center justify-center group hover:bg-[#0E0E10]/40 transition-colors duration-300"
+                    className="relative p-6 flex flex-col items-center justify-center group hover:bg-[#0E0E10]/60 transition-colors duration-300 cursor-pointer"
                   >
+                    {/* Hover Image Popover */}
+                    {item.image && (
+                      <div className="absolute -top-[230px] left-1/2 -translate-x-1/2 z-50 opacity-0 scale-90 translate-y-2 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none flex flex-col items-center">
+                        <div className="p-2 rounded-xl bg-[#0B0B0D] border border-accent/60 shadow-[0_0_30px_rgba(255,106,0,0.5)] overflow-hidden w-72 md:w-80 h-48 md:h-52 flex items-center justify-center">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-full h-full object-contain rounded bg-black opacity-100"
+                          />
+                        </div>
+                        <div className="w-3 h-3 bg-[#0E0E10] border-r border-b border-accent/60 rotate-45 -mt-1.5 shadow-md"></div>
+                      </div>
+                    )}
+
                     <motion.div
                       animate={
                         hoveredGadget === "keyboard"
@@ -1039,34 +1053,50 @@ export default function DesktopPortfolio() {
                 ))}
               </div>
 
-              {/* Bottom Row inside Grid: RAG, DevOps, LLM, System Design */}
-              <div className="border-x border-b border-white/10 rounded-b bg-white/5 grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/10 text-center">
-                {portfolio.recognition.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-5 flex flex-col items-center justify-center group hover:bg-[#0E0E10]/40 transition-colors duration-300"
-                  >
-                    <motion.div
-                      animate={
-                        hoveredGadget === "keyboard"
-                          ? { scale: [1, 1.15, 1] }
-                          : {}
-                      }
-                      transition={{ duration: 0.4, delay: (idx + 4) * 0.08 }}
-                      className={`p-2 rounded border border-white/5 bg-[#0E0E10] mb-2 transition-all duration-300 ${hoveredGadget === "keyboard"
-                        ? "border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)]"
-                        : "group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5"
-                        }`}
+              {/* Bottom Row inside Grid: Recognition */}
+              {portfolio.recognition && portfolio.recognition.length > 0 && (
+                <div className="border-x border-b border-white/10 rounded-b bg-white/5 grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/10 text-center relative z-10">
+                  {portfolio.recognition.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="relative p-5 flex flex-col items-center justify-center group hover:bg-[#0E0E10]/60 transition-colors duration-300 cursor-pointer"
                     >
-                      {getIcon(item.icon, 16)}
-                    </motion.div>
-                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/80 group-hover:text-white transition-colors duration-300">
-                      {item.title}
-                    </h4>
-                    <p className="text-[9px] text-white/40">{item.text}</p>
-                  </div>
-                ))}
-              </div>
+                      {/* Hover Image Popover */}
+                      {item.image && (
+                        <div className="absolute -top-[230px] left-1/2 -translate-x-1/2 z-50 opacity-0 scale-90 translate-y-2 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none flex flex-col items-center">
+                          <div className="p-2 rounded-xl bg-[#0B0B0D] border border-accent/60 shadow-[0_0_30px_rgba(255,106,0,0.5)] overflow-hidden w-72 md:w-80 h-48 md:h-52 flex items-center justify-center">
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              className="w-full h-full object-contain rounded bg-black opacity-100"
+                            />
+                          </div>
+                          <div className="w-3 h-3 bg-[#0E0E10] border-r border-b border-accent/60 rotate-45 -mt-1.5 shadow-md"></div>
+                        </div>
+                      )}
+
+                      <motion.div
+                        animate={
+                          hoveredGadget === "keyboard"
+                            ? { scale: [1, 1.15, 1] }
+                            : {}
+                        }
+                        transition={{ duration: 0.4, delay: (idx + 4) * 0.08 }}
+                        className={`p-2 rounded border border-white/5 bg-[#0E0E10] mb-2 transition-all duration-300 ${hoveredGadget === "keyboard"
+                          ? "border-accent/40 text-accent bg-accent/5 scale-110 shadow-[0_0_8px_rgba(255,106,0,0.2)]"
+                          : "group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5"
+                          }`}
+                      >
+                        {getIcon(item.icon, 16)}
+                      </motion.div>
+                      <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/80 group-hover:text-white transition-colors duration-300">
+                        {item.title}
+                      </h4>
+                      <p className="text-[9px] text-white/40">{item.text}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </motion.div>
           </div>
 
