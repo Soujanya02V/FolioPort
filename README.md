@@ -1,26 +1,16 @@
-#  Soujanya Maharudra | Portfolio
+# Soujanya Maharudra | Portfolio
 
-A modern interactive portfolio showcasing my projects, skills, achievements, certifications, and journey as a Computer Science student and aspiring Software Engineer.
+Welcome to my personal portfolio!
 
-## Live Demo
+## 🌐 Live Website
 
-👉 https://www.soujanyamaharudra.dev/
+**Visit:** https://www.soujanyamaharudra.dev/
 
-## Built With
+I'm **Soujanya Maharudra**, a Computer Science student passionate about building scalable software, exploring Artificial Intelligence, and solving real-world problems through technology. I enjoy working across Full Stack Development, DevOps, and AI while continuously learning new technologies and improving my problem-solving skills.
 
-- React
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- Vite
+This portfolio highlights my projects, technical skills, certifications, achievements, research work, and experiences. It reflects my journey as a developer, the technologies I've worked with, and the ideas I'm excited to build in the future.
 
-##  Features
 
-- Interactive blueprint-inspired UI
-- Custom animated intro
-- Responsive design
-- Smooth animations & transitions
-- Project showcase
-- Skills, certifications & achievements
 
 ---
+
