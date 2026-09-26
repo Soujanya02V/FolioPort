@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200" fill="none">
+  <rect width="300" height="200" rx="12" fill="#0E0E10"/>
+  <rect x="2" y="2" width="296" height="196" rx="10" stroke="#FF6A00" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="150" cy="70" r="30" fill="#FF6A00" fill-opacity="0.15" stroke="#FF6A00" stroke-width="2"/>
+  <circle cx="150" cy="62" r="8" fill="#FF6A00"/>
+  <path d="M136 82C136 74 142 72 150 72C158 72 164 74 164 82" stroke="#FF6A00" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="150" y="125" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="middle">LEADERSHIP</text>
+  <text x="150" y="150" fill="#FF6A00" font-family="sans-serif" font-size="12" text-anchor="middle">Vice President • NIC Club</text>
+  <line x1="50" y1="170" x2="250" y2="170" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="1"/>
+</svg>
