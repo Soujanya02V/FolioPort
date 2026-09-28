@@ -637,50 +637,12 @@ export default function DesktopPortfolio() {
                   {/* Profile circular frame */}
                   <div className="w-40 h-40 rounded-full border-2 border-white/20 p-1 relative flex items-center justify-center bg-[#0E0E10] group-hover:border-accent transition-colors duration-500">
                     <div className="absolute inset-2 rounded-full overflow-hidden border border-white/10 relative">
-                      {/* Silhouette Profile Blueprint SVG */}
-                      <svg viewBox="0 0 100 100" fill="none" className="w-full h-full bg-[#111115]">
-                        {/* Warm orange back-glow */}
-                        <circle cx="50" cy="55" r="32" fill="url(#orangeGlow)" opacity="0.35" />
-
-                        {/* Circuit elements behind silhouette */}
-                        <path d="M 15 25 H 45 V 45" stroke="#FF6A00" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.4" />
-                        <path d="M 85 30 V 55 H 65" stroke="#FF6A00" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.4" />
-
-                        {/* Schematic Woman Silhouette */}
-                        <path
-                          d="M 50 25 C 38 25 32 32 30 45 C 29 48 30 50 32 50 C 35 50 38 46 39 42 C 40 38 44 32 50 32 C 56 32 60 38 61 42 C 62 46 65 50 68 50 C 70 50 71 48 70 45 C 68 32 62 25 50 25 Z"
-                          fill="#0E0E10"
-                          stroke="#FFFFFF"
-                          strokeWidth="1.5"
-                        />
-                        {/* Body base */}
-                        <path
-                          d="M 22 88 C 22 72 32 60 50 60 C 68 60 78 72 78 88"
-                          fill="#0E0E10"
-                          stroke="#FFFFFF"
-                          strokeWidth="1.5"
-                        />
-                        {/* Stylized hair strands */}
-                        <path
-                          d="M 33 42 C 24 55 25 78 28 88 M 67 42 C 76 55 75 78 72 88"
-                          stroke="#FFFFFF"
-                          strokeWidth="1.2"
-                        />
-                        {/* Technical nodes overlay */}
-                        <circle cx="50" cy="25" r="2" fill="#FF6A00" />
-                        <circle cx="30" cy="45" r="2" fill="#FF6A00" />
-                        <circle cx="70" cy="45" r="2" fill="#FF6A00" />
-                        <line x1="50" y1="25" x2="50" y2="15" stroke="#FF6A00" strokeWidth="0.8" />
-                        <circle cx="50" cy="15" r="1.5" fill="#FF6A00" />
-
-                        {/* Definitions */}
-                        <defs>
-                          <radialGradient id="orangeGlow" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stopColor="#FF6A00" />
-                            <stop offset="100%" stopColor="#FF6A00" stopOpacity="0" />
-                          </radialGradient>
-                        </defs>
-                      </svg>
+                      {/* Character Image Replacement */}
+                      <img
+                        src="/images/hud-character.jpg"
+                        alt="Character"
+                        className="w-full h-full object-cover object-center"
+                      />
 
                       {/* Glowing pulse ring */}
                       <div className="absolute inset-0 border border-accent/0 group-hover:border-accent/40 rounded-full transition-all duration-500 scale-105 group-hover:scale-100" />

@@ -317,39 +317,11 @@ export default function MobilePortfolio() {
           <div className="absolute inset-0 -m-1.5 rounded-full border border-dashed border-white/10 animate-spin" style={{ animationDuration: "40s" }} />
           <div className="w-24 h-24 rounded-full border-2 border-white/20 p-1 relative flex items-center justify-center bg-[#0E0E10]">
             <div className="absolute inset-1 rounded-full overflow-hidden border border-white/10 relative">
-              <svg viewBox="0 0 100 100" fill="none" className="w-full h-full bg-[#111115]">
-                <circle cx="50" cy="55" r="32" fill="url(#orangeGlowMobile)" opacity="0.35" />
-                <path d="M 15 25 H 45 V 45" stroke="#FF6A00" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.4" />
-                <path d="M 85 30 V 55 H 65" stroke="#FF6A00" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.4" />
-                <path
-                  d="M 50 25 C 38 25 32 32 30 45 C 29 48 30 50 32 50 C 35 50 38 46 39 42 C 40 38 44 32 50 32 C 56 32 60 38 61 42 C 62 46 65 50 68 50 C 70 50 71 48 70 45 C 68 32 62 25 50 25 Z"
-                  fill="#0E0E10"
-                  stroke="#FFFFFF"
-                  strokeWidth="1.5"
-                />
-                <path
-                  d="M 22 88 C 22 72 32 60 50 60 C 68 60 78 72 78 88"
-                  fill="#0E0E10"
-                  stroke="#FFFFFF"
-                  strokeWidth="1.5"
-                />
-                <path
-                  d="M 33 42 C 24 55 25 78 28 88 M 67 42 C 76 55 75 78 72 88"
-                  stroke="#FFFFFF"
-                  strokeWidth="1.2"
-                />
-                <circle cx="50" cy="25" r="2" fill="#FF6A00" />
-                <circle cx="30" cy="45" r="2" fill="#FF6A00" />
-                <circle cx="70" cy="45" r="2" fill="#FF6A00" />
-                <line x1="50" y1="25" x2="50" y2="15" stroke="#FF6A00" strokeWidth="0.8" />
-                <circle cx="50" cy="15" r="1.5" fill="#FF6A00" />
-                <defs>
-                  <radialGradient id="orangeGlowMobile" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#FF6A00" />
-                    <stop offset="100%" stopColor="#FF6A00" stopOpacity="0" />
-                  </radialGradient>
-                </defs>
-              </svg>
+              <img
+                src="/images/hud-character.jpg"
+                alt="Character"
+                className="w-full h-full object-cover object-center"
+              />
             </div>
           </div>
         </div>
